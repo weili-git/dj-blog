@@ -1,0 +1,20 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+<div class="col-xs-offset-3 col-xs-6">
+    <h1>Create New Article</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group" >
+            <label>{{field.label}}:</label>
+            {{ field }}
+            <span style="color:red;">{{ field.errors.0 }}</span>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Submit
+        </button>
+    </form>
+</div>
+{% endblock %}
