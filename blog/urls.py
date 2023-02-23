@@ -12,5 +12,7 @@ urlpatterns = [
     path('category', views.CategoryIndexView.as_view(), name='category index'),
     path('category/<int:pk>/', views.CategoryDetailView.as_view(), name='category detail'),
     path('category/create', views.CategoryCreateView.as_view(), name='category create'),
-    path('category/delete/<int:pk>/', views.CategoryDeleteView.as_view(), name='category delete')
+    path('category/delete/<int:pk>/', views.CategoryDeleteView.as_view(), name='category delete'),
+
+    path('search', views.search_view, name='search')
 ]

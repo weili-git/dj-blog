@@ -14,7 +14,7 @@ class PostModelForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields = '__all__'
-        exclude = ['views']
+        exclude = ['views', 'modified_time', 'created_time']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -217,7 +217,7 @@ class PostUpdateView(UpdateView):
         row = Post.objects.get(id=self.kwargs['pk'])
         form = PostModelForm(request.POST, instance=row)
         if form.is_valid():
-            form.save()
+            post = form.save()
             return redirect('/post')
         return render(request, "post_create.html", {'form': form})  # with error information
 
@@ -304,5 +304,10 @@ class CategoryDeleteView(DeleteView):
         Category.objects.filter(id=self.kwargs['pk']).delete()
         return redirect('/category')
 
+
+def search_view(request):
+    keyword = request.GET.get('keyword')
+    post_list = Post.objects.filter(title__icontains=keyword)
+    return render(request, "search.html", {'post_list': post_list})
 
 

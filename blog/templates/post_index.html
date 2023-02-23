@@ -3,18 +3,20 @@
 {% block content %}
 <div class="col-xs-offset-3 col-xs-6">
     {% for post in post_list%}
-    <div class="panel panel-default">
+        <div class="panel panel-default">
         <div class="panel-heading">
             <a href="post/{{post.pk}}" style="color:gray;font-size:25px;">
-                <span class="glyphicon glyphicon-list" aria-hidden="true" style="font-size:20px;"></span> {{post.title}}
+                <span class="glyphicon glyphicon-list" aria-hidden="true" style="font-size:20px;"></span>
+                {{post.title}}
             </a>
-            <span class="glyphicon glyphicon-time" aria-hidden="true" style="margin-left:20px;"></span> {{ post.created_time }}
+            <span class="glyphicon glyphicon-time" aria-hidden="true" style="margin-left:20px;"></span>
+            {{ post.created_time }}
             <div style="color: orange;">
                 {% for i in ''|rjust:post.views %}
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 {% endfor %}
-                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+<!--                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>-->
+<!--                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>-->
             </div>
         </div>
         <div class="panel-body">
@@ -28,6 +30,8 @@
             </a>
         </div>
     </div>
+    {% empty %}
+        <h3>No posts yet</h3>
     {% endfor %}
 
     <nav aria-label="Page navigation">

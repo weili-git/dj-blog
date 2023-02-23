@@ -1,3 +1,5 @@
+import datetime
+import django
 from django.db import models
 from django.utils.html import strip_tags
 import markdown
@@ -33,8 +35,8 @@ class Post(models.Model):
     title = models.CharField(max_length=128, default="title", unique=True, verbose_name="post title")
     body = models.TextField()
 
-    created_time = models.DateTimeField(verbose_name="post created time")
-    modified_time = models.DateTimeField(verbose_name="post modified time")
+    created_time = models.DateTimeField(verbose_name="post created time", auto_now_add=True)
+    modified_time = models.DateTimeField(verbose_name="post modified time", auto_now=True)
 
     excerpt = models.CharField(max_length=256, blank=True)
 
